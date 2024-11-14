@@ -1,5 +1,6 @@
 from rest_framework import mixins
 from rest_framework import viewsets
+from django.http import JsonResponse
 from rest_framework.authentication import BasicAuthentication
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.pagination import LimitOffsetPagination
@@ -50,3 +51,22 @@ class CategoryViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
     authentication_classes = [JWTAuthentication]
     pagination_class = None
+
+
+def custom_404_view(request, exception=None):
+    # Si c'est une api
+    return JsonResponse({
+        'detail': 'Page non trouve',
+    }, status=404)
+
+    # Si une vue
+    # return render(request, '404.html')
+
+def custom_500_view(request, excetion=None):
+    # Si c'est une api
+    return JsonResponse({
+        'detail': 'Une erreur est survenue',
+    }, status=500)
+
+    # Si une vue
+    # return render(request, '500.html')

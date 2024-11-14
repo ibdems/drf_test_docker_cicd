@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import handler404, handler500
 from django.contrib.admin.views.decorators import staff_member_required
 from drf_spectacular.views import (
     SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
@@ -24,6 +25,9 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+
+handler404 = 'tasks.views.custom_404_view'
+handler500 = 'tasks.views.custom_500_view'
 
 urlpatterns = [
     path('admin/', admin.site.urls),

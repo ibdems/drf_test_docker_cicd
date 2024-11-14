@@ -1,0 +1,22 @@
+# # Nom de la pipeline
+# name: Task CI/CD Pipeline
+
+# # Ecouter des evenements
+# on:
+#   # Quand on fait pour un  push dans toutes les branches
+#   push:
+#     branches:
+#       - '*'
+#   # Quand on fait un pull_request
+#   pull_request:
+#     branches:
+#       - '*'
+
+# # Les activites a faire dans la piplene
+# jobs:
+#   # 1er job verifier le sytaxe du code
+#   check_syntaxe:
+#     runs_on: ubuntu-latest
+#     strategy:
+#       matrix:
+#         python-version: [3.12]
