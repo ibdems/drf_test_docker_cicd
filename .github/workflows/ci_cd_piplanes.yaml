@@ -35,7 +35,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Check lint code with flak8
+      - name: Check lint code with flake8
         run: |
-          pip install flak8
-          flak8 .
+          pip install flake8
+          flake8 .
