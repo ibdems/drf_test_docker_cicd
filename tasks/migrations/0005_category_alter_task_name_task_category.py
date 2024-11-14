@@ -8,26 +8,41 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('tasks', '0004_task_expired_at'),
+        ("tasks", "0004_task_expired_at"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Category',
+            name="Category",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50, unique=True)),
-                ('created_at', models.DateTimeField(default=django.utils.timezone.now)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=50, unique=True)),
+                (
+                    "created_at",
+                    models.DateTimeField(default=django.utils.timezone.now),
+                ),
             ],
         ),
         migrations.AlterField(
-            model_name='task',
-            name='name',
-            field=models.CharField(max_length=100, verbose_name='Nom de la tache'),
+            model_name="task",
+            name="name",
+            field=models.CharField(max_length=100, verbose_name="Nom de la tache"),
         ),
         migrations.AddField(
-            model_name='task',
-            name='category',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='tasks.category'),
+            model_name="task",
+            name="category",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="tasks.category",
+            ),
         ),
     ]

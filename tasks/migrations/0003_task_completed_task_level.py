@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('tasks', '0002_task_owner'),
+        ("tasks", "0002_task_owner"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='task',
-            name='completed',
+            model_name="task",
+            name="completed",
             field=models.BooleanField(default=False),
         ),
         migrations.AddField(
-            model_name='task',
-            name='level',
+            model_name="task",
+            name="level",
             field=models.PositiveIntegerField(default=0),
         ),
     ]

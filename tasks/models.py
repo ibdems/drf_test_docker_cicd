@@ -1,6 +1,6 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
-from django.contrib.auth.models import User
 
 
 class Category(models.Model):
@@ -15,7 +15,7 @@ class Task(models.Model):
     completed = models.BooleanField(default=False)
     level = models.PositiveIntegerField(default=0)
     category = models.ForeignKey(
-        Category, on_delete=models.CASCADE, null=True, related_name='tasks'
+        Category, on_delete=models.CASCADE, null=True, related_name="tasks"
     )
     created_at = models.DateTimeField(default=timezone.now)
     expired_at = models.DateTimeField()

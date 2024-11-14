@@ -7,13 +7,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('tasks', '0003_task_completed_task_level'),
+        ("tasks", "0003_task_completed_task_level"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='task',
-            name='expired_at',
+            model_name="task",
+            name="expired_at",
             field=models.DateTimeField(default=django.utils.timezone.now),
             preserve_default=False,
         ),
