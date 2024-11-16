@@ -16,11 +16,11 @@ repos:
       - id: isort
         args: ["--profile", "black"] # Profile Black pour éviter les conflits de formatage
 
-  # Formate les fichiers front-end comme HTML et JavaScript avec Prettier
-  - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v2.3.2 # Met à jour si une version plus récente est compatible
-    hooks:
-      - id: prettier
+  # # Formate les fichiers front-end comme HTML et JavaScript avec Prettier
+  # - repo: https://github.com/pre-commit/mirrors-prettier
+  #   rev: v2.3.2 # Met à jour si une version plus récente est compatible
+  #   hooks:
+  #     - id: prettier
 
   # Divers hooks utiles de pre-commit-hooks pour la maintenance du code
   - repo: https://github.com/pre-commit/pre-commit-hooks
