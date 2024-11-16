@@ -51,7 +51,7 @@ jobs:
           POSTGRES_PASSWORD: task
           POSTGRES_DB: task_test
         ports:
-          -5459:5432
+          - 5459:5432
     steps:
       - uses: actions/checkout@v2
       - names: Set up python
