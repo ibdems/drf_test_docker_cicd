@@ -26,8 +26,7 @@ repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
-      - id: trailing-whitespace # Supprime les espaces en fin de ligne
-      - id: end-of-file-fixer # Ajoute une ligne vide en fin de fichier si elle manque
+      - id: trailing-whitespace # Supprime les espaces en fin de ligne1
       - id: detect-private-key # Détecte les clés privées accidentellement ajoutées au dépôt
       - id: debug-statements # Vérifie l'absence de 'print' et 'pdb' (utiles pour le nettoyage du code)
 

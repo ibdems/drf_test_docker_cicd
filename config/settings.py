@@ -27,7 +27,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
-    "django_extensions",
     "drf_spectacular",
     "rest_framework.authtoken",
     "rest_framework_simplejwt",
@@ -73,10 +72,10 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "task_dev",
-        "USER": "task",
-        "PASSWORD": "task",
+        "USER": "postgres",
+        "PASSWORD": "postgre",
         "HOST": "127.0.0.1",
-        "PORT": 5459,
+        "PORT": 5432,
         "TEST": {
             "NAME": "task_test",
         },
