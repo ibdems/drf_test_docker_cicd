@@ -4,6 +4,7 @@ attrs==24.2.0
 cfgv==3.4.0
 click==8.1.7
 colorama==0.4.6
+coverage==7.6.7
 decorator==5.1.1
 distlib==0.3.8
 Django==5.1.1
@@ -35,12 +36,13 @@ platformdirs==4.2.2
 pluggy==1.5.0
 pre_commit==4.0.1
 prompt_toolkit==3.0.47
-psycopg2==2.9.9
+psycopg2==2.9.10
 pure-eval==0.2.2
 pycparser==2.22
 Pygments==2.18.0
 PyJWT==2.9.0
 pytest==8.3.3
+pytest-cov==6.0.0
 pytest-django==4.9.0
 python-decouple==3.8
 PyYAML==6.0.2
