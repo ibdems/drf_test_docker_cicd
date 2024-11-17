@@ -9,23 +9,13 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-ARG UID=10001
-RUN adduser \
-    --disabled-password \
-    --gecos "" \
-    --home "/nonexistent" \
-    --shell "/sbin/nologin" \
-    --no-create-home \
-    --uid "${UID}" \
-    appuser
+# Installer les dépendances système nécessaires
+RUN apt-get update && apt-get install -y build-essential libpq-dev && apt-get clean
 
-
-RUN --mount=type=cache,target=/root/.cache/pip \
-    --mount=type=bind,source=requirements.txt,target=requirements.txt \
-    python -m pip install -r requirements.txt
-
-# Switch to the non-privileged user to run the application.
-USER appuser
+# Copier et installer les dépendances Python
+COPY requirements.txt /app/requirements.txt
+RUN python -m pip install --upgrade pip
+RUN python -m pip install -r /app/requirements.txt
 
 COPY . .
 
