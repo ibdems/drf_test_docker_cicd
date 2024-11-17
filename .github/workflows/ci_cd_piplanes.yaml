@@ -72,8 +72,8 @@ jobs:
       - uses: action/checkout@v2
       - name: login to docker hub
         env:
-          username: ${{secret.DOCKERHUB_USERNAME}}
-          password: ${{secret.DOCKERHUB_PASSWORD}}
+          username: ${{secrets.DOCKERHUB_USERNAME}}
+          password: ${{secrets.DOCKERHUB_PASSWORD}}
         run: docker login -u $username -p $password
       - name: build the docker image
         run: docker build . -t devibrahima/task-essaie:latest
