@@ -63,3 +63,19 @@ jobs:
           make install_dev
       - name: Run tests
         run: make test
+
+  build:
+    name: build & Push
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v2
+      - name: login to docker hub
+        env:
+          username: ${{secrets.DOCKERHUB_USERNAME}}
+          password: ${{secrets.DOCKERHUB_PASSWORD}}
+        run: docker login -u $username -p $password
+      - name: build the docker image
+        run: docker build . -t devibrahima/task-essaie:latest
+      - name: Push image in registre
+        run: docker push devibrahima/task-essaie:latest
