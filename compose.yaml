@@ -1,23 +1,18 @@
-networks:
- traefik-public:
-  external: true
-
 services:
   web:
-    image: devibrahima/task-essaie:latest
+    image: devibrahima/task-essaie:latest  # Image Docker du service "web" à déployer
     env_file:
-      - .env
-    restart: always
+      - .env  # Chargement des variables d'environnement pour le conteneur
+    restart: always  # Redémarre automatiquement le conteneur en cas d'arrêt
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik-public
-      - traefik.http.routers.app-http.rule=Host(`${DOMAIN?Variable not set}`)
-      - traefik.http.routers.app-http.entrypoints=http
-      - traefik.http.routers.app-http.middlewares=https-redirect
-      - traefik.http.routers.app-https.rule=Host(`${DOMAIN?Variable not set}`)
-      - traefik.http.routers.app-http.entrypoints=https
-      - traefik.http.routers.app-http.tls=true
-      - traefik.http.routers.app-http.tls.certresolver=le
-      - traefik.http.services.app.loadbalancer.server.port=8080
-    networks:
-      - traefik-public
+      - traefik.http.routers.app-http.rule=PathPrefix(`/`)  # Accepte toutes les requêtes HTTP
+      - traefik.http.routers.app-http.entrypoints=http  # Connecte ce routeur à HTTP uniquement
+      # - traefik.http.routers.app-http.middlewares=https-redirect  # Désactive la redirection vers HTTPS
+      # - traefik.http.routers.app-https.rule=Host(`${DOMAIN?Variable not set}`)  # Désactivé temporairement
+      # - traefik.http.routers.app-http.entrypoints=https  # Désactivé temporairement
+      # - traefik.http.routers.app-http.tls=true  # Désactivé temporairement
+      # - traefik.http.routers.app-http.tls.certresolver=le  # Désactivé temporairement
+      - traefik.http.services.app.loadbalancer.server.port=8080  # Port interne du service web
+

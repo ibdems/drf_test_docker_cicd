@@ -1,39 +1,39 @@
 services:
   traefik:
-    image: traefik:v2.10
+    image: traefik:v2.10  # Utilisation de l'image officielle Traefik version 2.10
     env_file:
-      - .env
+      - .env  # Chargement des variables d'environnement depuis un fichier `.env`
     ports:
-      - "80:80"
-      - "443:443"
+      - "80:80"  # Traefik expose le port HTTP (80) pour le trafic entrant
+      - "443:443"  # Traefik expose le port HTTPS (443) pour le trafic sécurisé
     labels:
-      - traefik.enable=true
-      - traefik.docker.network=traefik-public
-      - traefik.contraint-label=traefik-public
-      - traefik.http.middlewares.https-redirect.redirectscheme.scheme=https
-      - traefik.http.middlewares.https-redirect.redirectscheme.permanent=true
-      - traefik.http.middlewares.https-compress.compress=true
+      - traefik.enable=true  # Active Traefik pour ce conteneur
+      - traefik.docker.network=traefik-public  # Indique le réseau Docker utilisé par Traefik
+      - traefik.contraint-label=traefik-public  # (Typo probable : "constraint-label") Utilisé pour filtrer les services par label
+      - traefik.http.middlewares.https-redirect.redirectscheme.scheme=https  # Middleware pour rediriger HTTP vers HTTPS
+      - traefik.http.middlewares.https-redirect.redirectscheme.permanent=true  # Redirection permanente (code HTTP 301)
+      - traefik.http.middlewares.https-compress.compress=true  # Middleware pour activer la compression des réponses HTTP
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - traefik-public-certificates:/certificates
-      - /var/log/traefik:/var/log
+      - /var/run/docker.sock:/var/run/docker.sock:ro  # Donne accès au socket Docker à Traefik pour détecter les services
+      - traefik-public-certificates:/certificates  # Stockage des certificats générés par Let's Encrypt
+      - /var/log/traefik:/var/log  # Montre les logs de Traefik sur l'hôte
     command:
-      - --providers.docker
-      - --providers.docker.exposedbydefault=false
-      - --entrypoints.http.address=:80
-      - --entrypoints.https.address=:443
-      - --certificatesresolvers.le.acme.email=ibrahima882001@gmail.com
-      - --certificatesresolvers.le.acme.tlschallenge=true
-      - --accesslog
-      - --log
-      - --accesslog.filePath=/var/log/access.log
-      - --api
+      - --providers.docker  # Active le provider Docker pour Traefik
+      - --providers.docker.exposedbydefault=false  # Désactive l'exposition automatique des conteneurs Docker
+      - --entrypoints.http.address=:80  # Définit l'entrée HTTP sur le port 80
+      - --entrypoints.https.address=:443  # Définit l'entrée HTTPS sur le port 443
+      - --certificatesresolvers.le.acme.email=ibrahima882001@gmail.com  # Email utilisé pour les certificats Let's Encrypt
+      - --certificatesresolvers.le.acme.tlschallenge=true  # Utilise le défi TLS-ALPN pour valider les certificats
+      - --accesslog  # Active les logs d'accès
+      - --log  # Active les logs généraux de Traefik
+      - --accesslog.filePath=/var/log/access.log  # Spécifie le chemin du fichier de logs d'accès
+      - --api  # Active l'API de Traefik (accessible via le tableau de bord)
     networks:
-      - traefik-public
+      - traefik-public  # Connecte le service au réseau Docker `traefik-public`
 
 volumes:
-  traefik-public-certificates:
+  traefik-public-certificates:  # Volume utilisé pour stocker les certificats
 
 networks:
   traefik-public:
-    external: true
+    external: true  # Le réseau `traefik-public` est externe et doit être créé manuellement
